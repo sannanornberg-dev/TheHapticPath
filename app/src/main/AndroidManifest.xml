@@ -5,7 +5,7 @@
         android:allowBackup="true"
         android:label="TheHapticPath"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light">
+        android:theme="@style/android:Theme.Material.Light">
         <activity
             android:name=".MainActivity"
             android:exported="true">
