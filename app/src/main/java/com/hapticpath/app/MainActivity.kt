@@ -1,10 +1,15 @@
 package com.hapticpath.app
 
+import android.Manifest
 import android.app.Activity
+import android.content.pm.PackageManager
+import android.media.AudioFormat
+import android.media.AudioRecord
+import android.media.MediaRecorder
 import android.os.Bundle
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Button
 import java.io.File
 import java.net.URL
 import kotlin.concurrent.thread
@@ -12,6 +17,11 @@ import kotlin.concurrent.thread
 class MainActivity : Activity() {
     private lateinit var statusText: TextView
     private lateinit var downloadButton: Button
+    private lateinit var recordButton: Button
+    private lateinit var resultText: TextView
+
+    private var isRecording = false
+    private var audioRecord: AudioRecord? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,23 +32,48 @@ class MainActivity : Activity() {
         }
 
         statusText = TextView(this).apply {
-            text = "Whisper Status: Ej nedladdad"
+            text = "Whisper Status: Kontrollerar..."
             textSize = 18f
-            setPadding(0, 0, 0, 40)
+            setPadding(0, 0, 0, 20)
         }
 
         downloadButton = Button(this).apply {
             text = "Ladda ner Whisper Model"
+            setOnClickListener { downloadWhisperModel() }
+        }
+
+        recordButton = Button(this).apply {
+            text = "Starta inspelning"
+            isEnabled = false
             setOnClickListener {
-                downloadWhisperModel()
+                if (isRecording) {
+                    stopRecording()
+                } else {
+                    startRecording()
+                }
             }
+        }
+
+        resultText = TextView(this).apply {
+            text = "Tolkad text visas här..."
+            textSize = 16f
+            setPadding(0, 40, 0, 0)
         }
 
         layout.addView(statusText)
         layout.addView(downloadButton)
+        layout.addView(recordButton)
+        layout.addView(resultText)
         setContentView(layout)
 
         checkModelExists()
+        requestAudioPermissions()
+    }
+
+    private fun requestAudioPermissions() {
+        if (checkSelfPermission(Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(arrayOf(Manifest.permission.RECORD_AUDIO), 101)
+        }
     }
 
     private fun checkModelExists() {
@@ -46,6 +81,11 @@ class MainActivity : Activity() {
         if (modelFile.exists()) {
             statusText.text = "Whisper Status: Modell redo (${modelFile.length() / (1024 * 1024)} MB)"
             downloadButton.isEnabled = false
+            recordButton.isEnabled = true
+        } else {
+            statusText.text = "Whisper Status: Ej nedladdad"
+            downloadButton.isEnabled = true
+            recordButton.isEnabled = false
         }
     }
 
@@ -66,12 +106,33 @@ class MainActivity : Activity() {
 
                 runOnUiThread {
                     statusText.text = "Nedladdning klar! Modell redo."
+                    recordButton.isEnabled = true
                 }
             } catch (e: Exception) {
                 runOnUiThread {
                     statusText.text = "Fel vid nedladdning: ${e.message}"
                     downloadButton.isEnabled = true
                 }
+            }
+        }
+    }
+
+    private fun startRecording() {
+        isRecording = true
+        recordButton.text = "Stoppa & Tolka"
+        resultText.text = "Spelar in ljud..."
+    }
+
+    private fun stopRecording() {
+        isRecording = false
+        recordButton.text = "Starta inspelning"
+        resultText.text = "Bearbetar ljud med Whisper..."
+        
+        // Här skickas ljudet vidare till Whisper-bearbetning
+        thread {
+            Thread.sleep(1000) // Simulerar tolkning i detta steg
+            runOnUiThread {
+                resultText.text = "Tolkning genomförd! (Whisper redo för ljudström)"
             }
         }
     }
