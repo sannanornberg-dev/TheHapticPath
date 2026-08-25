@@ -1,0 +1,3 @@
+C:/Users/Sanna/AndroidStudioProjects/TheHapticPath-app/app/.cxx/Debug/2b4m6333/x86_64/CMakeFiles/hapticpath.dir
+C:/Users/Sanna/AndroidStudioProjects/TheHapticPath-app/app/.cxx/Debug/2b4m6333/x86_64/CMakeFiles/edit_cache.dir
+C:/Users/Sanna/AndroidStudioProjects/TheHapticPath-app/app/.cxx/Debug/2b4m6333/x86_64/CMakeFiles/rebuild_cache.dir

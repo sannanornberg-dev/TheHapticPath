@@ -1,0 +1,1 @@
+C:\Users\Sanna\AndroidStudioProjects\TheHapticPath-app\app\build\intermediates\cxx\Debug\2b4m6333\obj\arm64-v8a

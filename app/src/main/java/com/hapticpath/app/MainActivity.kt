@@ -1,133 +1,122 @@
 package com.hapticpath.app
 
 import android.Manifest
-import android.app.Activity
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.TextView
-import java.io.File
-import java.net.URL
-import kotlin.concurrent.thread
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRow
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.core.content.ContextCompat
 
-class MainActivity : Activity() {
-    private lateinit var statusText: TextView
-    private lateinit var downloadButton: Button
-    private lateinit var recordButton: Button
-    private lateinit var resultText: TextView
+class MainActivity : ComponentActivity() {
 
-    private var isRecording = false
+    private val viewModel: MainViewModel by viewModels()
+
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+        if (!isGranted) {
+            viewModel.stopSession()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        checkAudioPermission()
 
-        val layout = LinearLayout(this).apply {
-            orientation = LinearLayout.VERTICAL
-            setPadding(60, 60, 60, 60)
-        }
-
-        statusText = TextView(this).apply {
-            text = "Whisper Status: Kontrollerar..."
-            textSize = 18f
-            setPadding(0, 0, 0, 20)
-        }
-
-        downloadButton = Button(this).apply {
-            text = "Ladda ner Whisper Model"
-            setOnClickListener { downloadWhisperModel() }
-        }
-
-        recordButton = Button(this).apply {
-            text = "Starta inspelning"
-            isEnabled = false
-            setOnClickListener {
-                if (isRecording) {
-                    stopRecording()
-                } else {
-                    startRecording()
-                }
-            }
-        }
-
-        resultText = TextView(this).apply {
-            text = "Tolkad text visas här..."
-            textSize = 16f
-            setPadding(0, 40, 0, 0)
-        }
-
-        layout.addView(statusText)
-        layout.addView(downloadButton)
-        layout.addView(recordButton)
-        layout.addView(resultText)
-        setContentView(layout)
-
-        checkModelExists()
-        requestAudioPermissions()
-    }
-
-    private fun requestAudioPermissions() {
-        if (checkSelfPermission(Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(arrayOf(Manifest.permission.RECORD_AUDIO), 101)
+        setContent {
+            MainAppContent(viewModel = viewModel)
         }
     }
 
-    private fun checkModelExists() {
-        val modelFile = File(filesDir, "ggml-tiny.bin")
-        if (modelFile.exists()) {
-            statusText.text = "Whisper Status: Modell redo (${modelFile.length() / (1024 * 1024)} MB)"
-            downloadButton.isEnabled = false
-            recordButton.isEnabled = true
-        } else {
-            statusText.text = "Whisper Status: Ej nedladdad"
-            downloadButton.isEnabled = true
-            recordButton.isEnabled = false
+    private fun checkAudioPermission() {
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.RECORD_AUDIO
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            requestPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
         }
     }
+}
 
-    private fun downloadWhisperModel() {
-        statusText.text = "Laddar ner Whisper-modell..."
-        downloadButton.isEnabled = false
+@Composable
+fun MainAppContent(viewModel: MainViewModel) {
+    val downloadState by viewModel.downloadState.collectAsState()
+    val currentScreen by viewModel.currentScreen.collectAsState()
 
-        thread {
-            try {
-                val url = URL("https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-tiny.bin")
-                val connection = url.openConnection()
-                val inputStream = connection.getInputStream()
-                val outputFile = File(filesDir, "ggml-tiny.bin")
-
-                outputFile.outputStream().use { output ->
-                    inputStream.copyTo(output)
+    Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
+        ) {
+            when (downloadState) {
+                is DownloadState.Completed -> {
+                    when (currentScreen) {
+                        is CurrentScreen.Session -> {
+                            TabNavigationContainer(viewModel = viewModel)
+                        }
+                        is CurrentScreen.Summary -> {
+                            val summary by viewModel.sessionSummary.collectAsState()
+                            SummaryScreen(
+                                summary = summary,
+                                onStartNewSession = { viewModel.startSession() }
+                            )
+                        }
+                    }
                 }
-
-                runOnUiThread {
-                    statusText.text = "Nedladdning klar! Modell redo."
-                    recordButton.isEnabled = true
-                }
-            } catch (e: Exception) {
-                runOnUiThread {
-                    statusText.text = "Fel vid nedladdning: ${e.message}"
-                    downloadButton.isEnabled = true
+                else -> {
+                    DownloadScreen(viewModel = viewModel)
                 }
             }
         }
     }
+}
 
-    private fun startRecording() {
-        isRecording = true
-        recordButton.text = "Stoppa & Tolka"
-        resultText.text = "Spelar in ljud..."
-    }
+@Composable
+private fun TabNavigationContainer(viewModel: MainViewModel) {
+    var selectedTab by remember { mutableIntStateOf(0) }
 
-    private fun stopRecording() {
-        isRecording = false
-        recordButton.text = "Starta inspelning"
-        resultText.text = "Bearbetar ljud..."
-        
-        thread {
-            Thread.sleep(1000)
-            runOnUiThread {
-                resultText.text = "Tolkning redo!"
+    Column(modifier = Modifier.fillMaxSize()) {
+        TabRow(
+            selectedTabIndex = selectedTab,
+            containerColor = Color(0xFF1E1E1E),
+            contentColor = Color(0xFF00E676)
+        ) {
+            Tab(
+                selected = selectedTab == 0,
+                onClick = { selectedTab = 0 },
+                text = { Text("Session", color = if (selectedTab == 0) Color(0xFF00E676) else Color.Gray) }
+            )
+            Tab(
+                selected = selectedTab == 1,
+                onClick = { selectedTab = 1 },
+                text = { Text("Inställningar", color = if (selectedTab == 1) Color(0xFF00E676) else Color.Gray) }
+            )
+        }
+
+        Box(modifier = Modifier.weight(1f)) {
+            when (selectedTab) {
+                0 -> SessionScreen(viewModel = viewModel)
+                1 -> SettingsScreen(viewModel = viewModel)
             }
         }
     }

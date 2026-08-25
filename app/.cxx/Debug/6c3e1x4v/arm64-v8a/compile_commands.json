@@ -1,0 +1,32 @@
+[
+{
+  "directory": "C:/Users/Sanna/AndroidStudioProjects/TheHapticPath-app/app/.cxx/Debug/6c3e1x4v/arm64-v8a",
+  "command": "C:\\Users\\Sanna\\AppData\\Local\\Android\\Sdk\\ndk\\25.1.8937393\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=aarch64-none-linux-android26 --sysroot=C:/Users/Sanna/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dwhisper_jni_EXPORTS -IC:/Users/Sanna/AndroidStudioProjects/TheHapticPath-app/app/src/main/cpp/whisper -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -O3 -march=armv8-a+simd -std=c++17 -O3 -mcpu=cortex-a55 -flto -fno-limit-debug-info  -fPIC -std=c++17 -o CMakeFiles\\whisper-jni.dir\\whisper-jni.cpp.o -c C:\\Users\\Sanna\\AndroidStudioProjects\\TheHapticPath-app\\app\\src\\main\\cpp\\whisper-jni.cpp",
+  "file": "C:\\Users\\Sanna\\AndroidStudioProjects\\TheHapticPath-app\\app\\src\\main\\cpp\\whisper-jni.cpp"
+},
+{
+  "directory": "C:/Users/Sanna/AndroidStudioProjects/TheHapticPath-app/app/.cxx/Debug/6c3e1x4v/arm64-v8a",
+  "command": "C:\\Users\\Sanna\\AppData\\Local\\Android\\Sdk\\ndk\\25.1.8937393\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=aarch64-none-linux-android26 --sysroot=C:/Users/Sanna/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dwhisper_jni_EXPORTS -IC:/Users/Sanna/AndroidStudioProjects/TheHapticPath-app/app/src/main/cpp/whisper -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -O3 -march=armv8-a+simd -std=c++17 -O3 -mcpu=cortex-a55 -flto -fno-limit-debug-info  -fPIC -std=c++17 -o CMakeFiles\\whisper-jni.dir\\whisper\\whisper.cpp.o -c C:\\Users\\Sanna\\AndroidStudioProjects\\TheHapticPath-app\\app\\src\\main\\cpp\\whisper\\whisper.cpp",
+  "file": "C:\\Users\\Sanna\\AndroidStudioProjects\\TheHapticPath-app\\app\\src\\main\\cpp\\whisper\\whisper.cpp"
+},
+{
+  "directory": "C:/Users/Sanna/AndroidStudioProjects/TheHapticPath-app/app/.cxx/Debug/6c3e1x4v/arm64-v8a",
+  "command": "C:\\Users\\Sanna\\AppData\\Local\\Android\\Sdk\\ndk\\25.1.8937393\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android26 --sysroot=C:/Users/Sanna/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dwhisper_jni_EXPORTS -IC:/Users/Sanna/AndroidStudioProjects/TheHapticPath-app/app/src/main/cpp/whisper -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -O3 -mcpu=cortex-a55 -flto -fno-limit-debug-info  -fPIC -o CMakeFiles\\whisper-jni.dir\\whisper\\ggml.c.o -c C:\\Users\\Sanna\\AndroidStudioProjects\\TheHapticPath-app\\app\\src\\main\\cpp\\whisper\\ggml.c",
+  "file": "C:\\Users\\Sanna\\AndroidStudioProjects\\TheHapticPath-app\\app\\src\\main\\cpp\\whisper\\ggml.c"
+},
+{
+  "directory": "C:/Users/Sanna/AndroidStudioProjects/TheHapticPath-app/app/.cxx/Debug/6c3e1x4v/arm64-v8a",
+  "command": "C:\\Users\\Sanna\\AppData\\Local\\Android\\Sdk\\ndk\\25.1.8937393\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android26 --sysroot=C:/Users/Sanna/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dwhisper_jni_EXPORTS -IC:/Users/Sanna/AndroidStudioProjects/TheHapticPath-app/app/src/main/cpp/whisper -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -O3 -mcpu=cortex-a55 -flto -fno-limit-debug-info  -fPIC -o CMakeFiles\\whisper-jni.dir\\whisper\\ggml-alloc.c.o -c C:\\Users\\Sanna\\AndroidStudioProjects\\TheHapticPath-app\\app\\src\\main\\cpp\\whisper\\ggml-alloc.c",
+  "file": "C:\\Users\\Sanna\\AndroidStudioProjects\\TheHapticPath-app\\app\\src\\main\\cpp\\whisper\\ggml-alloc.c"
+},
+{
+  "directory": "C:/Users/Sanna/AndroidStudioProjects/TheHapticPath-app/app/.cxx/Debug/6c3e1x4v/arm64-v8a",
+  "command": "C:\\Users\\Sanna\\AppData\\Local\\Android\\Sdk\\ndk\\25.1.8937393\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android26 --sysroot=C:/Users/Sanna/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dwhisper_jni_EXPORTS -IC:/Users/Sanna/AndroidStudioProjects/TheHapticPath-app/app/src/main/cpp/whisper -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -O3 -mcpu=cortex-a55 -flto -fno-limit-debug-info  -fPIC -o CMakeFiles\\whisper-jni.dir\\whisper\\ggml-backend.c.o -c C:\\Users\\Sanna\\AndroidStudioProjects\\TheHapticPath-app\\app\\src\\main\\cpp\\whisper\\ggml-backend.c",
+  "file": "C:\\Users\\Sanna\\AndroidStudioProjects\\TheHapticPath-app\\app\\src\\main\\cpp\\whisper\\ggml-backend.c"
+},
+{
+  "directory": "C:/Users/Sanna/AndroidStudioProjects/TheHapticPath-app/app/.cxx/Debug/6c3e1x4v/arm64-v8a",
+  "command": "C:\\Users\\Sanna\\AppData\\Local\\Android\\Sdk\\ndk\\25.1.8937393\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android26 --sysroot=C:/Users/Sanna/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dwhisper_jni_EXPORTS -IC:/Users/Sanna/AndroidStudioProjects/TheHapticPath-app/app/src/main/cpp/whisper -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -O3 -mcpu=cortex-a55 -flto -fno-limit-debug-info  -fPIC -o CMakeFiles\\whisper-jni.dir\\whisper\\ggml-quants.c.o -c C:\\Users\\Sanna\\AndroidStudioProjects\\TheHapticPath-app\\app\\src\\main\\cpp\\whisper\\ggml-quants.c",
+  "file": "C:\\Users\\Sanna\\AndroidStudioProjects\\TheHapticPath-app\\app\\src\\main\\cpp\\whisper\\ggml-quants.c"
+}
+]

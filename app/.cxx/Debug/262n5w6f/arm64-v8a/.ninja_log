@@ -1,0 +1,17 @@
+# ninja log v5
+1	43	0	clean	8c7d61adc09a186f
+173	2420	8092262761935578	CMakeFiles/whisper-jni.dir/whisper/ggml-alloc.c.o	9fbd0d5c8543a5ed
+576	2525	8092262763567791	CMakeFiles/whisper-jni.dir/whisper/ggml-backend.c.o	7f8027d514e2402c
+9	3471	8092262772434935	CMakeFiles/whisper-jni.dir/whisper-jni.cpp.o	2a3621458d711a17
+595	4628	8092262784711669	CMakeFiles/whisper-jni.dir/whisper/ggml-quants.c.o	7842dc8fb4a5fdfd
+483	15301	8092262891429524	CMakeFiles/whisper-jni.dir/whisper/ggml.c.o	9404ea0cb30eaf6c
+552	28518	8092263022889454	CMakeFiles/whisper-jni.dir/whisper/whisper.cpp.o	8c0de1be0b3b171d
+28521	98986	8092263726340398	C:/Users/Sanna/AndroidStudioProjects/TheHapticPath-app/app/build/intermediates/cxx/Debug/262n5w6f/obj/arm64-v8a/libwhisper-jni.so	748ad81e26a6c6e
+1	61	0	clean	8c7d61adc09a186f
+25	2737	8093194800345947	CMakeFiles/whisper-jni.dir/whisper/ggml-alloc.c.o	9fbd0d5c8543a5ed
+187	2999	8093194803177473	CMakeFiles/whisper-jni.dir/whisper/ggml-backend.c.o	7f8027d514e2402c
+71	5733	8093194830309600	CMakeFiles/whisper-jni.dir/whisper-jni.cpp.o	2a3621458d711a17
+169	6503	8093194837864265	CMakeFiles/whisper-jni.dir/whisper/ggml-quants.c.o	7842dc8fb4a5fdfd
+148	30774	8093195079453593	CMakeFiles/whisper-jni.dir/whisper/ggml.c.o	9404ea0cb30eaf6c
+114	44454	8093195217226079	CMakeFiles/whisper-jni.dir/whisper/whisper.cpp.o	8c0de1be0b3b171d
+44455	84515	8093195617335405	C:/Users/Sanna/AndroidStudioProjects/TheHapticPath-app/app/build/intermediates/cxx/Debug/262n5w6f/obj/arm64-v8a/libwhisper-jni.so	748ad81e26a6c6e

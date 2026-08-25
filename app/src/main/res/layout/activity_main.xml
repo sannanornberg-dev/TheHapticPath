@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp">
+
+    <!-- Status / Rubrik -->
+    <TextView
+        android:id="@+id/txtStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reducerar ordföljdsfel i realtid"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Progressbar för Whisper-modellens nedladdning -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="100"
+        android:visibility="gone"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Dynamisk text som visar elevens tal i realtid -->
+    <TextView
+        android:id="@+id/tvTranscribedText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Transkriberad text visas här..."
+        android:textSize="16sp"
+        android:textColor="#666666"
+        android:gravity="center"
+        android:layout_marginBottom="32dp" />
+
+    <!-- Manuell start/stopp-knapp -->
+    <Button
+        android:id="@+id/btnStartSession"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="STARTA TRÄNINGSSESSION"
+        android:padding="16dp" />
+
+</LinearLayout>

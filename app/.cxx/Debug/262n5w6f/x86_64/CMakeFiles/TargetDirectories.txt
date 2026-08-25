@@ -1,0 +1,3 @@
+C:/Users/Sanna/AndroidStudioProjects/TheHapticPath-app/app/.cxx/Debug/262n5w6f/x86_64/CMakeFiles/whisper-jni.dir
+C:/Users/Sanna/AndroidStudioProjects/TheHapticPath-app/app/.cxx/Debug/262n5w6f/x86_64/CMakeFiles/edit_cache.dir
+C:/Users/Sanna/AndroidStudioProjects/TheHapticPath-app/app/.cxx/Debug/262n5w6f/x86_64/CMakeFiles/rebuild_cache.dir
